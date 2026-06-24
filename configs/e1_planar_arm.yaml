@@ -1,0 +1,53 @@
+env: e1_planar_arm
+description: 2-link planar arm tracking a reference joint trajectory under payload/damping
+  drift.
+sim:
+  dt: 0.01
+  substeps: 5
+  episode_seconds: 6.0
+  quick_seconds: 2.0
+task:
+  cmd_freqs:
+  - 0.5
+  - 0.8
+  cmd_amps:
+  - 0.6
+  - 0.5
+  cmd_offset:
+  - 0.3
+  - -0.4
+reference_model:
+  wn: 6.0
+  zeta: 1.0
+baseline:
+  kp: 60.0
+  kd: 16.0
+adaptive:
+  feature_kind: rbf
+  rbf_per_dim: 3
+  feature_width: 64
+  feature_layers: 2
+  gamma: 2000.0
+  sigma_mod: 0.0005
+  theta_max: 200.0
+  lyap_Q: 4.0
+noise:
+  torque_std: 0.3
+certificate:
+  hidden: 96
+  epochs: 1200
+  margin_alpha: 0.15
+  epsilon: 0.05
+  n_train: 4000
+  n_verify: 20000
+  region: 1.5
+run:
+  seeds:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  quick_seeds:
+  - 0
+  threshold_deg: 5.0

@@ -1,0 +1,51 @@
+env: e3_push
+description: planar block pushing under changing table friction and block mass (contact-rich core).
+
+sim:
+  dt: 0.01
+  substeps: 5
+  frictionloss: 1.5         # nominal Coulomb table friction (N)
+  episode_seconds: 6.0
+  quick_seconds: 2.0
+
+task:
+  # block follows a slow sweep trajectory toward the goal region
+  cmd_freqs:  [0.25, 0.3]
+  cmd_amps:   [0.18, 0.15]
+  cmd_offset: [0.05, 0.05]
+
+reference_model:
+  wn:   5.0
+  zeta: 1.0
+
+baseline:
+  kp: 120.0
+  kd: 24.0
+  tau_clip: 25.0
+
+adaptive:
+  feature_kind: rbf
+  rbf_per_dim: 3
+  gamma: 600.0
+  sigma_mod: 0.0005
+  theta_max: 150.0
+  lyap_Q: 4.0
+
+certificate:
+  hidden: 96
+  epochs: 1200
+  margin_alpha: 0.15
+  epsilon: 0.05
+  n_train: 4000
+  n_verify: 20000
+  region: 1.5
+
+noise:
+  torque_std: 0.05
+
+run:
+  seeds: [0, 1, 2, 3, 4]
+  quick_seeds: [0]
+  error_scale: 100.0         # report tracking error in cm
+  error_unit: cm
+  threshold_deg: 2.0         # recovery threshold in cm (key name kept for code compatibility)

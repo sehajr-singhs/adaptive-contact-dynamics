@@ -1,0 +1,110 @@
+{
+  "e1_planar_arm|fixed_baseline": {
+    "post_mean": 27.186277831053964,
+    "post_std": 0.14795578512576085,
+    "viol": 0.0,
+    "nrec": 0,
+    "n": 5,
+    "rec_mean": null,
+    "unit": "deg"
+  },
+  "e1_planar_arm|constrained_adaptive": {
+    "post_mean": 4.416259679597777,
+    "post_std": 0.042857526316839624,
+    "viol": 0.0,
+    "nrec": 5,
+    "n": 5,
+    "rec_mean": 0.0,
+    "unit": "deg"
+  },
+  "e1_planar_arm|unconstrained_adaptive": {
+    "post_mean": 18.829944881062175,
+    "post_std": 4.463017636153948,
+    "viol": 0.5253333333333334,
+    "nrec": 0,
+    "n": 5,
+    "rec_mean": null,
+    "unit": "deg"
+  },
+  "e2_reacher|fixed_baseline": {
+    "post_mean": 2.0563780592765073,
+    "post_std": 0.0004891295390297648,
+    "viol": 0.0,
+    "nrec": 5,
+    "n": 5,
+    "rec_mean": 0.0,
+    "unit": "deg"
+  },
+  "e2_reacher|constrained_adaptive": {
+    "post_mean": 3.3970236812638093,
+    "post_std": 0.6125857311771157,
+    "viol": 0.0,
+    "nrec": 5,
+    "n": 5,
+    "rec_mean": 0.0,
+    "unit": "deg"
+  },
+  "e2_reacher|unconstrained_adaptive": {
+    "post_mean": 7.250277191749666,
+    "post_std": 1.659113227070991,
+    "viol": 0.6493333333333334,
+    "nrec": 5,
+    "n": 5,
+    "rec_mean": 0.036000000000000004,
+    "unit": "deg"
+  },
+  "e3_push|fixed_baseline": {
+    "post_mean": 3.4491079364147987,
+    "post_std": 0.003919230417243882,
+    "viol": 0.0,
+    "nrec": 0,
+    "n": 5,
+    "rec_mean": null,
+    "unit": "cm"
+  },
+  "e3_push|constrained_adaptive": {
+    "post_mean": 1.0502142391991927,
+    "post_std": 0.03282131881348396,
+    "viol": 0.0,
+    "nrec": 5,
+    "n": 5,
+    "rec_mean": 0.0,
+    "unit": "cm"
+  },
+  "e3_push|unconstrained_adaptive": {
+    "post_mean": 0.43648473320944847,
+    "post_std": 0.12216976542277047,
+    "viol": 0.0,
+    "nrec": 5,
+    "n": 5,
+    "rec_mean": 0.0,
+    "unit": "cm"
+  },
+  "e4_cube|fixed_baseline": {
+    "post_mean": 4.716961378600527,
+    "post_std": 0.08540078030688607,
+    "viol": 0.0,
+    "nrec": 0,
+    "n": 5,
+    "rec_mean": null,
+    "unit": "deg"
+  },
+  "e4_cube|constrained_adaptive": {
+    "post_mean": 2.062964856118257,
+    "post_std": 0.740293038045161,
+    "viol": 0.0,
+    "nrec": 5,
+    "n": 5,
+    "rec_mean": 0.0,
+    "unit": "deg"
+  },
+  "e4_cube|unconstrained_adaptive": {
+    "post_mean": 98.98253247819197,
+    "post_std": 21.275587396449485,
+    "viol": 1.0,
+    "nrec": 0,
+    "n": 5,
+    "rec_mean": null,
+    "unit": "deg"
+  }
+}

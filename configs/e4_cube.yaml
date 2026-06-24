@@ -1,0 +1,62 @@
+env: e4_cube
+description: REAL OGBench cube-single benchmark, arm-in-the-loop. The UR5e end effector pushes the
+  cube to its goal under cube mass and table friction drift. Runs in the .venv-ogbench
+  (Python 3.11/3.12) environment because it requires the ogbench package.
+
+ogbench:
+  env_id: cube-single-play-singletask-v0
+  benchmark: ogbench
+  note: real benchmark model (UR5e arm, Robotiq gripper, cube body, table contact and friction)
+
+sim:
+  dt: 0.01
+  substeps: 5
+  nominal_mass: 0.5         # cube payload mass (kg); the real benchmark cube is light, set heavier
+  nominal_friction: 0.5     # nominal table contact friction; the step drift raises it 3.5x
+  push_dist: 0.26           # end-effector forward push distance (m) over the episode
+  episode_seconds: 6.0
+  quick_seconds: 2.0
+
+task:
+  cmd_freqs:  [0, 0, 0, 0, 0, 0]   # unused, the arm command comes from online IK
+  cmd_amps:   [0, 0, 0, 0, 0, 0]
+  cmd_offset: [0, 0, 0, 0, 0, 0]
+
+reference_model:
+  wn:   5.0
+  zeta: 1.0
+
+baseline:
+  kp: 80.0
+  kd: 20.0
+  tau_clip: 120.0           # joint torque limit (N m)
+
+adaptive:
+  feature_kind: rbf
+  feature_input: q          # joint positions only -> 2^6 = 64 RBF centers (12-dim state is too large)
+  rbf_per_dim: 2
+  rbf_region: [3.5, 3.5, 3.5, 3.5, 3.5, 3.5]
+  gamma: 1500.0
+  sigma_mod: 0.0005
+  theta_max: 200.0
+  lyap_Q: 4.0
+
+certificate:
+  hidden: 96
+  epochs: 1200
+  margin_alpha: 0.15
+  epsilon: 0.05
+  n_train: 4000
+  n_verify: 20000
+  region: 1.5
+
+noise:
+  torque_std: 0.2
+
+run:
+  seeds: [0, 1, 2, 3, 4]
+  quick_seeds: [0]
+  error_scale: 57.29578     # joint tracking error in degrees
+  error_unit: deg
+  threshold_deg: 5.0
+  init_perturb: 0.01        # 1 cm per-seed perturbation of the cube start (env is in metres)

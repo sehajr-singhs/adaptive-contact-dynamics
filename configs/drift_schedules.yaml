@@ -1,0 +1,53 @@
+# Drift schedules, shared across environments. Magnitudes are reproducible and are
+# reported verbatim in the paper. Two regimes per environment.
+#
+# A drift "event" multiplies (or adds to) a named physical parameter of the live
+# MuJoCo model. `frac` is the fraction of an episode at which a step drift fires.
+# Continuous drift ramps linearly between `start_frac` and `end_frac`.
+
+e1_planar_arm:
+  step:
+    trigger_frac: 0.5            # payload picked up halfway through the episode
+    body_mass:   {link2: 4.0}    # forearm mass x4 (an unknown payload)
+    dof_damping: {j1: 6.0, j2: 6.0}  # joint damping x6 (stiffer, hotter joints)
+  continuous:
+    start_frac: 0.3
+    end_frac:   0.9
+    body_mass:   {link2: 4.0}
+    dof_damping: {j1: 6.0, j2: 6.0}
+
+e2_reacher:
+  # Reacher is planar-horizontal with near-massless links, so the dynamics that drift are joint
+  # damping (a heating/stiffening motor) and actuator gain (a weakening motor), not gravity load.
+  step:
+    trigger_frac: 0.5
+    actuator_gain: 0.5           # motors weaken to 50% authority
+    dof_armature: {joint0: 8.0, joint1: 8.0}   # reflected gearbox inertia x8 (worn/heavier motor)
+  continuous:
+    start_frac: 0.3
+    end_frac:   0.9
+    actuator_gain: 0.5
+    dof_armature: {joint0: 8.0, joint1: 8.0}
+
+e3_push:
+  step:
+    trigger_frac: 0.5
+    frictionloss_mult: 3.5       # table friction x3.5 (the surface gets much grippier)
+    object_mass_mult:  2.5       # block mass x2.5
+  continuous:
+    start_frac: 0.3
+    end_frac:   0.9
+    frictionloss_mult: 3.5
+    object_mass_mult:  2.5
+
+e4_cube:
+  # Real OGBench cube-single: cube mass and table contact friction change mid-episode.
+  step:
+    trigger_frac: 0.5
+    object_mass_mult:   2.5      # the cube is 2.5x heavier than the nominal model assumed
+    geom_friction_mult: 3.5      # table contact friction rises 3.5x (grippier surface)
+  continuous:
+    start_frac: 0.35
+    end_frac:   0.85
+    object_mass_mult:   2.5
+    geom_friction_mult: 3.5

@@ -1,0 +1,11 @@
+# CPU-only install. Pinned to versions verified on the build machine (Python 3.14).
+numpy==2.4.2
+scipy==1.16.3
+torch==2.10.0
+matplotlib==3.10.8
+imageio==2.37.2
+imageio-ffmpeg==0.6.0
+pyyaml==6.0.3
+mujoco==3.9.0
+gymnasium==1.2.3
+pandas==2.3.3

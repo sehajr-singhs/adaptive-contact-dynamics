@@ -1,0 +1,47 @@
+env: e2_reacher
+description: gymnasium Reacher 2-joint arm tracking a joint trajectory under actuator-gain / inertia drift.
+
+sim:
+  dt: 0.01
+  substeps: 2
+  episode_seconds: 6.0
+  quick_seconds: 2.0
+
+task:
+  cmd_freqs:  [0.4, 0.6]
+  cmd_amps:   [0.5, 0.4]
+  cmd_offset: [0.0, 0.0]
+
+reference_model:
+  wn:   6.0
+  zeta: 1.0
+
+baseline:
+  kp: 40.0
+  kd: 10.0
+  tau_clip: 1.0          # Reacher motors are small; torques are ~O(0.1)
+
+adaptive:
+  feature_kind: rbf
+  rbf_per_dim: 3
+  gamma: 40.0            # smaller plant -> smaller w-map magnitude differs; tuned below
+  sigma_mod: 0.0005
+  theta_max: 50.0
+  lyap_Q: 4.0
+
+certificate:
+  hidden: 96
+  epochs: 1200
+  margin_alpha: 0.15
+  epsilon: 0.05
+  n_train: 4000
+  n_verify: 20000
+  region: 1.5
+
+noise:
+  torque_std: 0.004
+
+run:
+  seeds: [0, 1, 2, 3, 4]
+  quick_seeds: [0]
+  threshold_deg: 5.0
