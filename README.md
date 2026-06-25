@@ -1,5 +1,7 @@
 # Adaptive Contact-Rich Manipulation Under Changing Physics
 
+**Project site:** https://sehajr-singhs.github.io/adaptive-contact-dynamics · **Paper:** [whitepaper.pdf](paper/whitepaper.pdf)
+
 Learned manipulation policies fit the dynamics they trained on and break the moment the robot picks up a heavier object, the table gets slippery, or a motor heats up, and the field's usual fixes, more data and domain randomization and online fine-tuning, all help empirically without ever guaranteeing the system stays stable while it adapts. Classical Model Reference Adaptive Control gives exactly that guarantee through a Lyapunov-derived update law, but it assumes a clean analytic regressor that contact-rich manipulation does not hand you. This repo keeps the guarantee and still represents messy nonlinear uncertainty by putting a bounded radial-basis neural network inside the Lyapunov-derived law, so the network supplies the features and the law supplies the stability, and it tests one thing across four simulated environments, whether the controller recovers task performance after the contact physics drift mid-episode without losing stability.
 
 The headline, all simulation-only and CPU-scale, five seeds, mean over seeds:
