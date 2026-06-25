@@ -1,8 +1,8 @@
 ---
 title: "Adaptive Contact-Rich Manipulation Under Changing Physics"
 subtitle: "Stability-guaranteed neural adaptation for robot manipulation under mid-task dynamics drift"
-author: "Sehaj, Electric Adaptation"
-date: "2026"
+author: "Sehaj Singh"
+date: "Independent research preprint from Electric Adaptation, 2026"
 ---
 
 # Abstract
